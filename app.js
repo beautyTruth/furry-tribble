@@ -77,5 +77,26 @@ function findMatches(wordToMatch, citiesStates) {
 }
 
 function displayMatches() {
-  // findMatches(citiesStates);
+  // console.log(this.value);
+  const findArray = findMatches(this.value, citiesStates);
+
+  const matchEl = findArray
+    .map((locale) => {
+      const regX = new RegExp(this.value, "gi");
+
+      const cityName = locale.city.replace(
+        regX,
+        `<span class="highlight">${this.value}</span>`
+      );
+
+      const stateName = locale.state.replace(
+        regX,
+        `<span class="highlight">${this.value}</span>`
+      );
+
+      return `<li class="name">${cityName}, ${stateName}</li>`;
+    })
+    .join("");
+
+  suggestionsContainer.innerHTML = matchEl;
 }
