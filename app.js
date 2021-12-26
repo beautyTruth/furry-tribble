@@ -66,9 +66,16 @@ fetch(
   .then((response) => response.json())
   .then((responseData) => {
     citiesStates.push(...responseData);
-    console.log(citiesStates);
   });
 
+function findMatches(wordToMatch, citiesStates) {
+  return citiesStates.filter((boobies) => {
+    const regX = new RegExp(wordToMatch, "gi");
+
+    return boobies.city.match(regX) || boobies.state.match(regX);
+  });
+}
+
 function displayMatches() {
-  console.log("thicc latinas");
+  // findMatches(citiesStates);
 }
